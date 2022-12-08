@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import {
     AuthButtons,
     AuthInput,
-    FormField,
+    LoginForm,
     LoginButton,
     RegisterButton,
     ResetButton,
@@ -34,7 +34,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
     return (
         <div>
             {error && <div></div>}
-            <FormField>
+            <LoginForm>
                 <form onSubmit={handleSubmit}>
                     <AuthInput
                         type="email"
@@ -54,7 +54,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
                     />
                     <LoginButton secondary>Login</LoginButton>
                 </form>
-            </FormField>
+            </LoginForm>
             <AuthButtons>
                 <ResetButton tertiary onClick={() => setStatus('reset')}>
                     Forgot Password

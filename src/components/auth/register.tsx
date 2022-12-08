@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import { navigate } from 'gatsby'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { LoginButton, RegisterButton, ResetButton } from './styles'
+import {
+    RegisterForm,
+    AuthInput,
+    LoginButton,
+    RegisterButton,
+    ResetButton,
+    ControlArea,
+} from './styles'
 import { auth } from './firebase'
 import { localize } from 'components/localization'
+import { Header } from 'components/elements'
 
 type TAuthRegister = {
     setStatus: (status: string) => void
@@ -51,10 +59,10 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
     return (
         <>
             <div>
-                <div>
-                    {error && <div>{error}</div>}
-                    <form onSubmit={handleSubmit}>
-                        <input
+                {error && <div>{error}</div>}
+                <form onSubmit={handleSubmit}>
+                    <RegisterForm>
+                        <AuthInput
                             type="text"
                             name="userName"
                             value={user.displayName}
@@ -62,7 +70,7 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                             onChange={(e) => setUser({ ...user, displayName: e.target.value })}
                             placeholder="Username"
                         />
-                        <input
+                        <AuthInput
                             type="email"
                             name="email"
                             value={user.email}
@@ -70,7 +78,7 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                             onChange={(e) => setUser({ ...user, email: e.target.value })}
                             placeholder="E-mail Address"
                         />
-                        <input
+                        <AuthInput
                             type="password"
                             name="password"
                             value={user.password}
@@ -78,7 +86,7 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                             onChange={(e) => setUser({ ...user, password: e.target.value })}
                             placeholder="Password"
                         />
-                        <input
+                        <AuthInput
                             type="password"
                             name="confirmPassword"
                             value={user.confirmPassword}
@@ -86,19 +94,23 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                             onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                             placeholder="Confirm Password"
                         />
+
                         <RegisterButton secondary>{localize('Sign up')}</RegisterButton>
-                    </form>
+                    </RegisterForm>
+                </form>
+                <ControlArea>
                     <ResetButton tertiary onClick={() => setStatus('reset')}>
                         {localize('Forgot Password')}
                     </ResetButton>
-                    <>
-                        {localize('Already have an account?')}
 
-                        <LoginButton secondary onClick={() => setStatus('login')}>
-                            {localize('Login')}
-                        </LoginButton>
-                    </>
-                </div>
+                    <Header as="div" type="subtitle-2" align="end">
+                        {localize('Already have an account?')}
+                    </Header>
+
+                    <LoginButton secondary onClick={() => setStatus('login')}>
+                        {localize('Login')}
+                    </LoginButton>
+                </ControlArea>
             </div>
         </>
     )
