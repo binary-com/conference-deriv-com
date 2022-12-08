@@ -33,10 +33,10 @@ const Login = ({ currentUser }: any) => {
             {currentUser ? (
                 <LoginWrapper>
                     <Header as="div" type="subtitle-1" color="primary" align="center" pb="32px">
-                        You`re already logged in
+                        {localize('You`re already logged in')}
                     </Header>
                     <Button tertiary onClick={() => signOut(auth)}>
-                        Log out
+                        {localize('Log out')}
                     </Button>
                 </LoginWrapper>
             ) : (

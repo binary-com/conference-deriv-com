@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { LoginButton, RegisterButton, ResetButton } from './styles'
 import { auth } from './firebase'
+import { localize } from 'components/localization'
 
 type TAuthRegister = {
     setStatus: (status: string) => void
@@ -85,15 +86,16 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                             onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                             placeholder="Confirm Password"
                         />
-                        <RegisterButton secondary>Register</RegisterButton>
+                        <RegisterButton secondary>{localize('Sign up')}</RegisterButton>
                     </form>
                     <ResetButton tertiary onClick={() => setStatus('reset')}>
-                        Forgot Password
+                        {localize('Forgot Password')}
                     </ResetButton>
                     <>
-                        Already have an account?
+                        {localize('Already have an account?')}
+
                         <LoginButton secondary onClick={() => setStatus('login')}>
-                            Login
+                            {localize('Login')}
                         </LoginButton>
                     </>
                 </div>

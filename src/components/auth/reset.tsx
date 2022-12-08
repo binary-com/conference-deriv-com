@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from './firebase'
 import { Button } from 'components/form'
+import { localize } from 'components/localization'
 
 type TAuthReset = {
     setStatus: (status: string) => void
@@ -26,7 +27,7 @@ const AuthReset = ({ setStatus }: TAuthReset) => {
     return (
         <>
             {staus ? (
-                <>Check your email</>
+                <>{localize('Check your email')}</>
             ) : (
                 <div>
                     {error && <div>{error}</div>}
@@ -39,18 +40,18 @@ const AuthReset = ({ setStatus }: TAuthReset) => {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="E-mail Address"
                         />
-                        <button>Forgot Password</button>
+                        <button>{localize('Forgot Password')}</button>
                     </form>
                     <>
-                        Already have an account?
+                        {localize('Already have an account?')}
                         <Button tertiary onClick={() => setStatus('login')}>
-                            Login
+                            {localize('Login')}
                         </Button>
                     </>
                     <>
-                        Don`t have an account?
+                        {localize('Don`t have an account?')}
                         <Button tertiary onClick={() => setStatus('register')}>
-                            Register now.
+                            {localize('Register now.')}
                         </Button>
                     </>
                 </div>
