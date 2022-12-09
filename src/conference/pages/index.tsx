@@ -7,7 +7,7 @@ import { Subscribe, Preview, Venue } from './_lazy-load'
 import { SEO } from 'components/containers'
 import Layout from 'components/layout/layout'
 import { WithIntl } from 'components/localization'
-import { useAuthValue } from 'components/auth'
+import { useAuthValue } from 'config'
 
 const Conferencies = () => {
     const { currentUser } = useAuthValue()

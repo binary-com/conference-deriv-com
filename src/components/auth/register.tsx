@@ -9,7 +9,7 @@ import {
     ResetButton,
     ControlArea,
 } from './styles'
-import { auth } from './firebase'
+import { auth } from 'config/firebase'
 import { localize } from 'components/localization'
 import { Header } from 'components/elements'
 
@@ -58,60 +58,58 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
 
     return (
         <>
-            <div>
-                {error && <div>{error}</div>}
-                <form onSubmit={handleSubmit}>
-                    <RegisterForm>
-                        <AuthInput
-                            type="text"
-                            name="userName"
-                            value={user.displayName}
-                            required
-                            onChange={(e) => setUser({ ...user, displayName: e.target.value })}
-                            placeholder="Username"
-                        />
-                        <AuthInput
-                            type="email"
-                            name="email"
-                            value={user.email}
-                            required
-                            onChange={(e) => setUser({ ...user, email: e.target.value })}
-                            placeholder="E-mail Address"
-                        />
-                        <AuthInput
-                            type="password"
-                            name="password"
-                            value={user.password}
-                            required
-                            onChange={(e) => setUser({ ...user, password: e.target.value })}
-                            placeholder="Password"
-                        />
-                        <AuthInput
-                            type="password"
-                            name="confirmPassword"
-                            value={user.confirmPassword}
-                            required
-                            onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
-                            placeholder="Confirm Password"
-                        />
+            {error && <div>{error}</div>}
+            <form onSubmit={handleSubmit}>
+                <RegisterForm>
+                    <AuthInput
+                        type="text"
+                        name="userName"
+                        value={user.displayName}
+                        required
+                        onChange={(e) => setUser({ ...user, displayName: e.target.value })}
+                        placeholder="Username"
+                    />
+                    <AuthInput
+                        type="email"
+                        name="email"
+                        value={user.email}
+                        required
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        placeholder="Email Address"
+                    />
+                    <AuthInput
+                        type="password"
+                        name="password"
+                        value={user.password}
+                        required
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        placeholder="Password"
+                    />
+                    <AuthInput
+                        type="password"
+                        name="confirmPassword"
+                        value={user.confirmPassword}
+                        required
+                        onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
+                        placeholder="Confirm Password"
+                    />
 
-                        <RegisterButton secondary>{localize('Sign up')}</RegisterButton>
-                    </RegisterForm>
-                </form>
-                <ControlArea>
-                    <ResetButton tertiary onClick={() => setStatus('reset')}>
-                        {localize('Forgot Password')}
-                    </ResetButton>
+                    <RegisterButton secondary>{localize('Sign up')}</RegisterButton>
+                </RegisterForm>
+            </form>
+            <ControlArea>
+                <ResetButton tertiary onClick={() => setStatus('reset')}>
+                    {localize('Forgot Password')}
+                </ResetButton>
 
-                    <Header as="div" type="subtitle-2" align="end">
-                        {localize('Already have an account?')}
-                    </Header>
+                <Header as="div" type="subtitle-2" align="end">
+                    {localize('Already have an account?')}
+                </Header>
 
-                    <LoginButton secondary onClick={() => setStatus('login')}>
-                        {localize('Login')}
-                    </LoginButton>
-                </ControlArea>
-            </div>
+                <LoginButton secondary onClick={() => setStatus('login')}>
+                    {localize('Login')}
+                </LoginButton>
+            </ControlArea>
         </>
     )
 }

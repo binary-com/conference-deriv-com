@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { sendPasswordResetEmail } from 'firebase/auth'
-import { auth } from './firebase'
 import {
     AuthInput,
     ControlArea,
@@ -9,6 +8,7 @@ import {
     RegisterButton,
     ResetButton,
 } from './styles'
+import { auth } from 'config/firebase'
 import { localize } from 'components/localization'
 import { Header } from 'components/elements'
 
@@ -46,7 +46,7 @@ const AuthReset = ({ setStatus }: TAuthReset) => {
                                 value={email}
                                 required
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="E-mail Address"
+                                placeholder="Email Address"
                             />
                             <ResetButton tertiary>{localize('Forgot Password')}</ResetButton>
                         </form>

@@ -6,7 +6,7 @@ import { Header } from 'components/elements'
 import { Button } from 'components/form'
 import device from 'themes/device'
 import { localize } from 'components/localization'
-import { auth } from 'components/auth/firebase'
+import { auth } from 'config/firebase'
 
 const LoginWrapper = styled.div`
     display: flex;
@@ -27,7 +27,6 @@ const StyledButton = styled(Button)`
 `
 
 const Login = ({ currentUser }: any) => {
-    console.log(currentUser)
     return (
         <>
             {currentUser ? (

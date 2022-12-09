@@ -9,7 +9,7 @@ import {
     RegisterButton,
     ResetButton,
 } from './styles'
-import { auth } from './firebase'
+import { auth } from 'config/firebase'
 import { Header } from 'components/elements'
 
 type TAuthLogin = {
@@ -32,7 +32,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
     }
 
     return (
-        <div>
+        <>
             {error && <div></div>}
             <LoginForm>
                 <form onSubmit={handleSubmit}>
@@ -42,7 +42,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="E-mail Address"
+                        placeholder="Email Address"
                     />
                     <AuthInput
                         type="password"
@@ -68,7 +68,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
                     Register now.
                 </RegisterButton>
             </AuthButtons>
-        </div>
+        </>
     )
 }
 

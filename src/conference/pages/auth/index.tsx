@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import device from 'themes/device'
-import { AuthLogin, AuthRegister, AuthReset } from 'components/auth'
 import Layout from 'components/layout/layout'
 import { queryParams } from 'common/utility'
+import { AuthLogin, AuthRegister, AuthReset } from 'components/auth'
 
 const LoginWrapper = styled.div`
     display: flex;
@@ -19,7 +19,6 @@ const LoginWrapper = styled.div`
 const ConferenceAuth = () => {
     const query = queryParams.get('type') || 'login'
     const [status, setStatus] = useState(query)
-    console.log(query)
 
     return (
         <Layout type="conference" margin_top="0px">
