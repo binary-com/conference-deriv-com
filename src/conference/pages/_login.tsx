@@ -27,6 +27,8 @@ const StyledButton = styled(Button)`
 `
 
 const Login = ({ currentUser }: any) => {
+    console.log(currentUser)
+
     return (
         <>
             {currentUser ? (
@@ -43,13 +45,13 @@ const Login = ({ currentUser }: any) => {
                     <LoginHeader as="h3" type="subtitle-1">
                         {localize('Three days of content, networking and news.')}
                     </LoginHeader>
-                    <Link to="/auth?type=register" target="_blank" rel="noopener noreferrer">
+                    <Link to="/register" target="_blank" rel="noopener noreferrer">
                         <StyledButton secondary>{localize('Register here')}</StyledButton>
                     </Link>
                     <LoginHeader as="div" weight="normal" type="subtitle-1" pt="32px">
                         {localize('or, if you already have access to the event')}
                     </LoginHeader>
-                    <Link to="/auth" target="_blank" rel="noopener noreferrer">
+                    <Link to="/login" target="_blank" rel="noopener noreferrer">
                         <StyledButton primary>{localize('Sign in')}</StyledButton>
                     </Link>
                 </LoginWrapper>

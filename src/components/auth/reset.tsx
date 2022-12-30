@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { navigate } from 'gatsby'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import {
     AuthInput,
@@ -7,16 +8,13 @@ import {
     LoginButton,
     RegisterButton,
     ResetButton,
+    AuthWrapper,
 } from './styles'
 import { auth } from 'config/firebase'
 import { localize } from 'components/localization'
 import { Header } from 'components/elements'
 
-type TAuthReset = {
-    setStatus: (status: string) => void
-}
-
-const AuthReset = ({ setStatus }: TAuthReset) => {
+const AuthReset = () => {
     const [email, setEmail] = useState('')
     const [error, setError] = useState('')
     const [staus, setStaus] = useState(false)
@@ -32,7 +30,7 @@ const AuthReset = ({ setStatus }: TAuthReset) => {
     }
 
     return (
-        <>
+        <AuthWrapper>
             {staus ? (
                 <>{localize('Check your email')}</>
             ) : (
@@ -61,7 +59,7 @@ const AuthReset = ({ setStatus }: TAuthReset) => {
                             {localize('Already have an account?')}
                         </Header>
 
-                        <LoginButton secondary onClick={() => setStatus('login')}>
+                        <LoginButton secondary onClick={() => navigate('/login')}>
                             {localize('Login')}
                         </LoginButton>
 
@@ -69,13 +67,13 @@ const AuthReset = ({ setStatus }: TAuthReset) => {
                             {localize('Don`t have an account?')}
                         </Header>
 
-                        <RegisterButton secondary onClick={() => setStatus('register')}>
+                        <RegisterButton secondary onClick={() => navigate('/register')}>
                             {localize('Register now.')}
                         </RegisterButton>
                     </ControlArea>
                 </div>
             )}
-        </>
+        </AuthWrapper>
     )
 }
 

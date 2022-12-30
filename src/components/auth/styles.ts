@@ -1,6 +1,17 @@
 import styled from 'styled-components'
 import { Button } from 'components/form'
+import device from 'themes/device'
 
+export const AuthWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 120px;
+
+    @media ${device.laptopM} {
+        padding: 40px 80px;
+    }
+`
 export const LoginForm = styled.div`
     display: flex;
     flex-direction: row;

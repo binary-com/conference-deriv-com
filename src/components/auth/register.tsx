@@ -8,14 +8,11 @@ import {
     RegisterButton,
     ResetButton,
     ControlArea,
+    AuthWrapper,
 } from './styles'
 import { auth } from 'config/firebase'
 import { localize } from 'components/localization'
 import { Header } from 'components/elements'
-
-type TAuthRegister = {
-    setStatus: (status: string) => void
-}
 
 const userInit = {
     email: '',
@@ -24,7 +21,7 @@ const userInit = {
     displayName: '',
 }
 
-const AuthRegister = ({ setStatus }: TAuthRegister) => {
+const AuthRegister = () => {
     const [user, setUser] = useState(userInit)
     const [error, setError] = useState('')
 
@@ -52,12 +49,11 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
         }
         await updateProfile(auth.currentUser, { displayName: user.displayName })
         navigate(`/`)
-        setStatus('')
         setUser(userInit)
     }
 
     return (
-        <>
+        <AuthWrapper>
             {error && <div>{error}</div>}
             <form onSubmit={handleSubmit}>
                 <RegisterForm>
@@ -98,7 +94,7 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                 </RegisterForm>
             </form>
             <ControlArea>
-                <ResetButton tertiary onClick={() => setStatus('reset')}>
+                <ResetButton tertiary onClick={() => navigate('/reset')}>
                     {localize('Forgot Password')}
                 </ResetButton>
 
@@ -106,11 +102,11 @@ const AuthRegister = ({ setStatus }: TAuthRegister) => {
                     {localize('Already have an account?')}
                 </Header>
 
-                <LoginButton secondary onClick={() => setStatus('login')}>
+                <LoginButton secondary onClick={() => navigate('/login')}>
                     {localize('Login')}
                 </LoginButton>
             </ControlArea>
-        </>
+        </AuthWrapper>
     )
 }
 

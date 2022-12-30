@@ -8,15 +8,12 @@ import {
     LoginButton,
     RegisterButton,
     ResetButton,
+    AuthWrapper,
 } from './styles'
 import { auth } from 'config/firebase'
 import { Header } from 'components/elements'
 
-type TAuthLogin = {
-    setStatus: (status: string) => void
-}
-
-const AuthLogin = ({ setStatus }: TAuthLogin) => {
+const AuthLogin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -32,7 +29,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
     }
 
     return (
-        <>
+        <AuthWrapper>
             {error && <div></div>}
             <LoginForm>
                 <form onSubmit={handleSubmit}>
@@ -56,7 +53,7 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
                 </form>
             </LoginForm>
             <AuthButtons>
-                <ResetButton tertiary onClick={() => setStatus('reset')}>
+                <ResetButton tertiary onClick={() => navigate('/reset')}>
                     Forgot Password
                 </ResetButton>
 
@@ -64,11 +61,11 @@ const AuthLogin = ({ setStatus }: TAuthLogin) => {
                     Don`t have an account?
                 </Header>
 
-                <RegisterButton secondary onClick={() => setStatus('register')}>
+                <RegisterButton secondary onClick={() => navigate('/register')}>
                     Register now.
                 </RegisterButton>
             </AuthButtons>
-        </>
+        </AuthWrapper>
     )
 }
 
