@@ -2,12 +2,16 @@ import React from 'react'
 import Hero from './_hero'
 import Login from './_login'
 import Events from './_events'
-import { Subscribe, Preview, Venue, Speakers } from './_lazy-load'
+import Speakers from './_speakers'
+import { Subscribe, Preview, Venue } from './_lazy-load'
 import { SEO } from 'components/containers'
 import Layout from 'components/layout/layout'
 import { WithIntl } from 'components/localization'
+import { useAuthValue } from 'config'
 
 const Conferencies = () => {
+    const { currentUser } = useAuthValue()
+
     return (
         <Layout type="conference" margin_top="0px">
             <SEO
@@ -15,7 +19,7 @@ const Conferencies = () => {
                 description="Deriv is a pioneering and award-winning online trading platform that offers a wide selection of derivatives for anyone, anywhere to trade."
             />
             <Hero />
-            <Login />
+            <Login currentUser={currentUser} />
             <Events />
             <Preview />
             <Speakers />

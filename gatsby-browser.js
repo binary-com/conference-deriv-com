@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pushwoosh } from 'web-push-notifications'
+import AuthProvider from './src/config/auth-context'
 import { WrapPagesWithLocaleContext } from './src/components/localization'
 import { isProduction, isLive } from './src/common/websocket/config'
 import { LocalStore } from './src/common/storage'
@@ -10,6 +11,9 @@ import { getClientInformation, getDomain, getLanguage, addScript } from 'common/
 import { pushwoosh_app_code } from 'common/constants'
 import './static/css/ibm-plex-sans-var.css'
 import './static/css/noto-sans-arabic.css'
+import 'firebase/auth'
+import 'firebase/firestore'
+import 'firebase/functions'
 
 const is_browser = typeof window !== 'undefined'
 
@@ -82,7 +86,9 @@ const pushwooshInit = (push_woosh) => {
 export const wrapRootElement = ({ element }) => {
     return (
         <DerivProvider>
-            <MediaContextProvider>{element}</MediaContextProvider>
+            <AuthProvider>
+                <MediaContextProvider>{element}</MediaContextProvider>
+            </AuthProvider>
         </DerivProvider>
     )
 }
@@ -135,7 +141,7 @@ export const onClientEntry = () => {
     addScript({
         src: 'https://static.deriv.com/scripts/cookie.js',
         async: true,
-        strategy: "off-main-thread",
+        strategy: 'off-main-thread',
     })
 
     checkLiveChatRedirection()
